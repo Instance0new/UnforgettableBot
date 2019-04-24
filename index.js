@@ -5,6 +5,7 @@ const fs = require('fs');
 require('dotenv/config');
 const http = require('http')
 const port = process.env.PORT || 3000
+http.createServer().listen(port);
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
@@ -45,5 +46,9 @@ bot.on("message", async message => {
 
     if(message.author.id === `357259124314210304`) return await message.author.send("Sending messages in my server makes me want to get inside of you even more, honey. Lemme take care of your kitten, sweet-cakes. :drooling_face: :weary: :kissing_heart: :sweat_drops:")
 });
+
+bot.on('error', err => {
+    console.log(err)
+})
 
 bot.login(tokenfile.token);
